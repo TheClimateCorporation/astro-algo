@@ -29,11 +29,10 @@ Astro-algo is available in the Clojars repository. Just use this leiningen depen
 ## Usage
 
     (:require
-      [com.climate.astro-algo.bodies :refer [local-coordinates
-                                             passages]]
+      [com.climate.astro-algo.bodies :refer [local-coordinates passages]]
       [clj-time.core :as ct])
     (:import
-      [com.climate.astro-algo.bodies Sun])
+      [com.climate.astro_algo.bodies Sun])
 
     (let [sun (Sun.)]
       ; get cosine angle of the sun
