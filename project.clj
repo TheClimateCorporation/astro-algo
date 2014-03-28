@@ -1,4 +1,4 @@
-(defproject astro-algo "0.1.0"
+(defproject astro-algo "0.1.1"
   :description "Library functions based on the book Astronomical Algorithms"
   :url "http://github.com/TheClimateCorporation/astro-algo/"
   :license {:name "Apache License Version 2.0"

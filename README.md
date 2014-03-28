@@ -24,7 +24,7 @@ The library also includes date utils with a reduction of time scales table that 
 1890 to 2016.
 
 Astro-algo is available in the Clojars repository. Just use this leiningen dependency:
-`[com.climate/astro-algo "0.1.0"]`.
+`[com.climate/astro-algo "0.1.1"]`.
 
 ## Usage
 
@@ -39,8 +39,8 @@ Astro-algo is available in the Clojars repository. Just use this leiningen depen
       ; get cosine angle of the sun
       ; on 10/18/1989 00:04:00 (UTC) in San Francisco
       (let [dt (ct/date-time 1989 10 18 0 4 0)
-            lon -122.42
-            lat 37.77
+            lon -122.42 ; [degrees east of Greenwich]
+            lat 37.77   ; [degrees north of the Equator]
             ; get azimuth and altitude in radians
             {:keys [azimuth altitude]} (local-coordinates sun dt lon lat)]
         ; get the cosine of the zenith (the sin of the altitude)
@@ -50,8 +50,8 @@ Astro-algo is available in the Clojars repository. Just use this leiningen depen
     (let [sun (Sun.)]
       ; get civil daylength on 12/21/2013 at Stonehenge
       (let [date (ct/local-date 2012 12 21)
-            lon 1.8262 ; degrees west of Greenwich
-            lat 51.1788 ; degrees north of the Equator
+            lon -1.8262 ; [degrees east of Greenwich]
+            lat 51.1788 ; [degrees north of the Equator]
             {:keys [rising transit setting]} (passages sun date lon lat
                                                        ; can be none, civil, astronomical, nautical
                                                        ; none is default
@@ -62,8 +62,8 @@ Astro-algo is available in the Clojars repository. Just use this leiningen depen
                                                        :precision 1.0)]
         ; calculate daylength in hours
         (-> (ct/interval rising setting)
-          ct/in-millis
-          (/ 3600000)
+          ct/in-millis ; [milliseconds]
+          (/ 3600000)  ; [hours]
           double)))
 
 ## License
