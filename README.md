@@ -24,7 +24,7 @@ The library also includes date utils with a reduction of time scales table that 
 1890 to 2016.
 
 Astro-algo is available in the Clojars repository. Just use this leiningen dependency:
-`[astro-algo "0.1.2"]`.
+`[astro-algo "0.1.3"]`.
 
 ## Usage
 
