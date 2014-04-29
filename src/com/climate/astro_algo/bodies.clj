@@ -179,29 +179,29 @@
         ;; interpolate right-ascension & declination to adjust m values
         (letfn [(interp-m
                   [idx m]
-                  (set! *warn-on-reflection* true)
-                  (let [n (+ m (/ (.getMillis ^org.joda.time.Period (delta-t dt))
-                                  DateTimeConstants/MILLIS_PER_DAY))
-                        ra (interpolate ra1 ra2 ra3 n)
-                        decl (interpolate decl1 decl2 decl3 n)
-                        ; apparent sidereal time, degrees [1] Ch.15
-                        theta (+ theta_0 (* 360.985647 m))
-                        ; local hour angle, degrees [1] Ch.15
-                        h (+ theta lon (- ra))]
-                    (if (= idx 0)
-                      ; transit
-                      (/ h -360) ; [1] Ch.15
-                      ; rising or setting
-                      ; get altitude, degrees [1] Eqn (13.6)
-                      (let [alt (-> (Math/asin (+ (* (Math/sin lat)
-                                                     (Math/sin decl))
-                                                  (* (Math/cos lat)
-                                                     (Math/cos decl)
-                                                     (Math/cos (conv/deg->rad h)))))
-                                  conv/rad->deg)]
-                        (/ (- alt std-alt)
-                           (* 360 (Math/cos decl) (Math/cos lat)
-                              (Math/sin (conv/deg->rad h))))))))] ; [1] Ch.15
+                  (binding [*warn-on-reflection* true]
+                    (let [n (+ m (/ (.getMillis ^org.joda.time.Period (delta-t dt))
+                                    DateTimeConstants/MILLIS_PER_DAY))
+                          ra (interpolate ra1 ra2 ra3 n)
+                          decl (interpolate decl1 decl2 decl3 n)
+                          ; apparent sidereal time, degrees [1] Ch.15
+                          theta (+ theta_0 (* 360.985647 m))
+                          ; local hour angle, degrees [1] Ch.15
+                          h (+ theta lon (- ra))]
+                      (if (= idx 0)
+                        ; transit
+                        (/ h -360) ; [1] Ch.15
+                        ; rising or setting
+                        ; get altitude, degrees [1] Eqn (13.6)
+                        (let [alt (-> (Math/asin (+ (* (Math/sin lat)
+                                                       (Math/sin decl))
+                                                    (* (Math/cos lat)
+                                                       (Math/cos decl)
+                                                       (Math/cos (conv/deg->rad h)))))
+                                    conv/rad->deg)]
+                          (/ (- alt std-alt)
+                             (* 360 (Math/cos decl) (Math/cos lat)
+                                (Math/sin (conv/deg->rad h)))))))))] ; [1] Ch.15
           (let [[m0 m1 m2] (loop [ms [m0 m1 m2]]
                              (let [ms (vec ms)
                                    delta-ms (vec (map-indexed interp-m ms))
