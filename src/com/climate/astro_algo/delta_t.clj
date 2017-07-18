@@ -4,7 +4,7 @@
     [clj-time.core :as ct])
   (:use [clojure.tools.logging :only (warn)]))
 
-; Values from _Astronomical Almanac for the Year 2013_ page K9
+; Values from _Astronomical Almanac for the Year 2017_ page K9
 ; by U.S. Nautical Almanac Office
 ; These are based on terrestrial observations which are
 ; difficult to predict, so an extrapolation of only a few years is provided
@@ -33,7 +33,8 @@
                       2000 63.83 2001 64.09 2002 64.30 2003 64.47 2004 64.57
                       2005 64.69 2006 64.85 2007 65.15 2008 65.46 2009 65.78
                       2010 66.07 2011 66.32 2012 66.60 2013 66.90 2014 67.00
-                      2015 68.00 2016 68.00})
+                      2015 68.00 2016 68.00 2017 68.00 2018 69.00 2019 69.00
+                      2020 69.00})
 
 (defn delta-t
   "Get difference between dynamical time and universal time (delta_T = TD - UT)
