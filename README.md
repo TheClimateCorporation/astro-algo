@@ -9,7 +9,7 @@ setting) for a Body on any day at any location.
 
 The solar position computations implemented in this library are considered low accuracy.
 They account for some effects of nutation with simplifications described in AA Ch. 25.
-These calculations should be accurate to within 0.01 degrees of /geometric position/,
+These calculations should be accurate to within 0.01 degrees of _geometric_ position,
 however larger differences may be observed due to atmospheric refraction, which is not
 accounted for other than the standard values for the effect of atmospheric refraction
 at the horizon used in the calculation of passage times.
@@ -21,7 +21,7 @@ celestial body unless the passages for twilight are desired, in which case the s
 altitude for the specified twilight definition is used.
 
 The library also includes date utils with a reduction of time scales table that spans from
-1890 to 2016.
+1890 to 2020.
 
 [![Clojars Project](https://img.shields.io/clojars/v/astro-algo.svg)](https://clojars.org/astro-algo)
 
