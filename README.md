@@ -23,8 +23,7 @@ altitude for the specified twilight definition is used.
 The library also includes date utils with a reduction of time scales table that spans from
 1890 to 2016.
 
-Astro-algo is available in the Clojars repository. Just use this leiningen dependency:
-`[astro-algo "0.1.3"]`.
+[![Clojars Project](https://img.shields.io/clojars/v/astro-algo.svg)](https://clojars.org/astro-algo)
 
 ## Usage
 
@@ -67,7 +66,7 @@ Astro-algo is available in the Clojars repository. Just use this leiningen depen
 
 ## License
 
-Copyright © 2013 The Climate Corporation. Distributed under the Apache
+Copyright © 2017 The Climate Corporation. Distributed under the Apache
 License, Version 2.0.  You may not use this library except in compliance with
 the License. You may obtain a copy of the License at
 
