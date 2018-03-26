@@ -47,11 +47,11 @@
   (let [year (ct/year dt)
         secs (cond
                (< year MIN-YEAR) 0.0
-               (> year MAX-YEAR) (let [year-key MAX-YEAR]
+               (> year MAX-YEAR) (do
                                    (warn "Year" year "is not extrapolated"
                                          "in reduction of time scales. Using"
-                                         "delta-t value for year" year-key)
-                                   (get DELTA-T-MAP year-key))
+                                         "delta-t value for year" MAX-YEAR)
+                                   (get DELTA-T-MAP MAX-YEAR))
                :else (get DELTA-T-MAP year))]
     (-> (* secs 1000)
         int
