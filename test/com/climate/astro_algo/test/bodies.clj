@@ -34,7 +34,7 @@
       ; this precision is way more than the accuracy of the algorithm
       ; but it's fun to see that we are within a trillionth of a degree
       (is (= (format "%.12f" decl) "-9.531532085193"))
-      (is (= (format "%.12f" ra "-157.218219592112"))))))
+      (is (= (format "%.12f" ra) "-157.218219592112")))))
 
 (deftest test-local-coordinates
   (testing "test local-coordinates"

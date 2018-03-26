@@ -36,6 +36,9 @@
                       2015 68.00 2016 68.00 2017 68.00 2018 69.00 2019 69.00
                       2020 69.00})
 
+(defonce MIN-YEAR (apply min (keys DELTA-T-MAP)))
+(defonce MAX-YEAR (apply max (keys DELTA-T-MAP)))
+
 (defn delta-t
   "Get difference between dynamical time and universal time (delta_T = TD - UT)
   Input: org.joda.time.DateTime
@@ -43,13 +46,13 @@
   [dt]
   (let [year (ct/year dt)
         secs (cond
-              (< year (apply min (keys DELTA-T-MAP))) 0.0
-              (> year (apply max (keys DELTA-T-MAP))) (let [year-key (apply max (keys DELTA-T-MAP))]
-                                                        (warn "Year" year "is not extrapolated"
-                                                              "in reduction of time scales. Using"
-                                                              "delta-t value for year" year-key)
-                                                        (get DELTA-T-MAP year-key))
-              :else (get DELTA-T-MAP year))]
+               (< year MIN-YEAR) 0.0
+               (> year MAX-YEAR) (do
+                                   (warn "Year" year "is not extrapolated"
+                                         "in reduction of time scales. Using"
+                                         "delta-t value for year" MAX-YEAR)
+                                   (get DELTA-T-MAP MAX-YEAR))
+               :else (get DELTA-T-MAP year))]
     (-> (* secs 1000)
-      int
-      ct/millis)))
+        int
+        ct/millis)))
